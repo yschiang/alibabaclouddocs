@@ -91,7 +91,7 @@ CREATE SCHEMA hello_mysql_vpc_rds WITH DBPROPERTIES (
 * LOCATION：输入 jdbc:mysql://<ECS实例私有IP>:3306/<数据库名>
 * VPC_ID：输入<ECS实例的专有网络ID>，在ECS**实例详情**页面查看专有网路ID。
 * INTANCE_ID：输入<ECS实例ID>，如下图所示i-########8e。
-![INSTANCE_ID](http://blog-demo.oss-ap-southeast-1.aliyuncs.com/dla_ecs_mysql/dla_ecs_vpcid.png "VPC ID")
+![INSTANCE_ID](http://blog-demo.oss-ap-southeast-1.aliyuncs.com/dla_ecs_mysql/dla_ecs_ecsid.png "ECS_ID")
 
 ### 步骤二：创建MySQL外表
 创建一个外表，名为tbl_person，映射到MySQL数据库person表。
