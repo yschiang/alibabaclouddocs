@@ -3,7 +3,7 @@
 ## 背景信息
 [Data Lake Analytics](https://www.aliyun.com/product/datalakeanalytics)（简称DLA） 作为云上数据处理的枢纽，支持通过标准JDBC对关系型数据库（MySQL、MS SQL Server、PostgreSQL）中的数据进行查询和分析，并可以将分析结果回写。
 
-本文档适用于用户自建于ECS上的关系型数据库。本文档将以用户自建于ECS上的MySQL为例，介绍如何使用DLA，通过JDBC连线与存取位于同一地域数据中心(例如新加坡)的MySQL数据并进行读写。本文档之方法，也适用于读写MS SQL Server、PostgreSQL数据库。
+本文档适用于用户自建于ECS上的关系型数据库。本文档将以用户自建于ECS上的MySQL为例，介绍如何使用DLA，通过JDBC连线存取位于同一地域数据中心(例如新加坡)的MySQL数据并进行读写。本文档之方法，也适用于读写MS SQL Server、PostgreSQL数据库。
 
 针对阿里云RDS实例之关系型数据库，请参考[通过DLA读写RDS数据](https://help.aliyun.com/document_detail/98566.html)。
 
