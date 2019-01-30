@@ -17,8 +17,6 @@
 
 通过DLA读写MySQL数据前，您需要远程连接ECS服务器，通过以下操作准备好MySQL数据库以及测试数据：
 
-19
-
 1. 创建MySQL数据库(例如，dla_db)：
 	```
     MySQL [(none)]> CREATE DATABASE dla_db;
@@ -82,9 +80,6 @@
 ## 通过DLA读取ECS服務器上之MySQL数据
 于**DLA**控制台，登陆DMS进入**DMS for Data Lake Analytics**页面，执行以下步骤。
 
-84
-
-
 ### 步骤一：创建MySQL数据库连接
 创建一个底层映射到MySQL的数据库schema连接。
 ```
@@ -98,25 +93,13 @@ CREATE SCHEMA hello_mysql_vpc_rds WITH DBPROPERTIES (
 );
 ```
 * LOCATION：输入 jdbc:mysql://<ECS实例私有IP>:3306/<数据库名>
-
-95
-
 * VPC_ID：输入<ECS实例的专有网络ID>，在ECS**实例详情**页面查看专有网路ID。
-
-96
-
 * INTANCE_ID：输入<ECS实例ID>，如下图所示i-########8e。
-
-97
-
 ![INSTANCE_ID](http://blog-demo.oss-ap-southeast-1.aliyuncs.com/dla_ecs_mysql/dla_ecs_vpcid.png "VPC ID")
 
 ### 步骤二：创建MySQL外表
 创建一个外表，名为tbl_person，映射到MySQL数据库person表。
-
-101
-
-``
+```
 CREATE EXTERNAL TABLE hello_mysql_vpc_rds.tbl_person (
 	id int,
 	name varchar(1023),
