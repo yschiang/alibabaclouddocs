@@ -8,7 +8,7 @@
 针对阿里云RDS实例之关系型数据库，请参考[通过DLA读写RDS数据](https://help.aliyun.com/document_detail/98566.html)。
 
 ## 注意事项
-为了让DLA能访问ECS上的数据库，需要在ECS的安全组规则添加白名单：允许100.104.0.0/16 IP地址段：![Security Group](http://blog-demo.oss-ap-southeast-1.aliyuncs.com/dla_ecs_mysql/dla_ecs_securitygroup.png "添加安全组存取JDBC白名单")
+为了让DLA能访问ECS上的数据库，需要在ECS的安全组规则添加白名单：允许**100.104.0.0/16** IP地址段：![Security Group](http://blog-demo.oss-ap-southeast-1.aliyuncs.com/dla_ecs_mysql/dla_ecs_securitygroup.png "添加安全组存取JDBC白名单")
 
 ## 准备工作
 通过DLA读写MySQL数据前，您需要远程连接ECS服务器，通过以下操作准备好MySQL数据库以及测试数据：
@@ -38,7 +38,7 @@
     MySQL [mysql]> CREATE USER 'dla_user'@'100.104.0.0/255.255.0.0' IDENTIFIED BY 'dla_userpasswd';
     Query OK, 0 rows affected (0.00 sec)
     
-    MySQL [mysql]> GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,ALTER,INDEX on <database_name>.* TO '<dla_username>'@'100.104.0.0/255.255.0.0';
+    MySQL [mysql]> GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,ALTER,INDEX on dla_db.* TO 'dla_user'@'100.104.0.0/255.255.0.0';
     Query OK, 0 rows affected (0.00 sec)
     
     MySQL [mysql]> flush privileges;
