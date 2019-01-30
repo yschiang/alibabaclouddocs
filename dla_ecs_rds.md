@@ -1,20 +1,16 @@
 # 通过DLA连线存取ECS上的MySQL数据库
 
 ## 背景信息
-
 [Data Lake Analytics](https://www.aliyun.com/product/datalakeanalytics)（简称DLA） 作为云上数据处理的枢纽，支持通过标准JDBC对关系型数据库（MySQL、MS SQL Server、PostgreSQL）中的数据进行查询和分析，并可以将分析结果回写。
 
-本文档适用于用户自建于ECS上的关系型数据库。本文档将以用户自建于ECS上的MySQL为例，介绍如何使用DLA，通过JDBC连线与存取位于同一地域数据中心(例如新加坡)的MySQL数据并进行读写。本文档之方法，也适用于读写SQLServer、PostgreSQL数据库。
+本文档适用于用户自建于ECS上的关系型数据库。本文档将以用户自建于ECS上的MySQL为例，介绍如何使用DLA，通过JDBC连线与存取位于同一地域数据中心(例如新加坡)的MySQL数据并进行读写。本文档之方法，也适用于读写MS SQL Server、PostgreSQL数据库。
 
-针对建于阿里云RDS之实例，请参考[通过DLA读写RDS数据](https://help.aliyun.com/document_detail/98566.html)。
-
+针对阿里云RDS实例之关系型数据库，请参考[通过DLA读写RDS数据](https://help.aliyun.com/document_detail/98566.html)。
 
 ## 注意事项
-为了让DLA能访问ECS上的数据库，需要在ECS的安全组规则添加白名单：允许100.104.0.0/16 IP地址段：
-	![Security Group](http://blog-demo.oss-ap-southeast-1.aliyuncs.com/dla_ecs_mysql/dla_ecs_securitygroup.png "添加安全组存取JDBC白名单")
+为了让DLA能访问ECS上的数据库，需要在ECS的安全组规则添加白名单：允许100.104.0.0/16 IP地址段：![Security Group](http://blog-demo.oss-ap-southeast-1.aliyuncs.com/dla_ecs_mysql/dla_ecs_securitygroup.png "添加安全组存取JDBC白名单")
 
 ## 准备工作
-
 通过DLA读写MySQL数据前，您需要远程连接ECS服务器，通过以下操作准备好MySQL数据库以及测试数据：
 
 1. 创建MySQL数据库(例如，dla_db)：
@@ -33,9 +29,9 @@
     +--------------------+
 	4 rows in set (0.00 sec)
     ```
-2. 新增用户(例如，dla_user)，DLA之后将以该用户存取数据库。并将适当的存取权限以及DLA之IP地址段100.104.0.0/16加入数据库存取白名单列表：
+2. 新增用户(例如，dla_user)，DLA之后将以该用户存取数据库。并将适当的存取权限以及DLA之IP地址段**100.104.0.0/16**加入数据库存取白名单列表：
 
-	```
+    ```
     MySQL [(none)]> USE mysql;
     Database changed
     
@@ -57,7 +53,7 @@
     | root     | localhost               |
     +----------+-------------------------+
     3 rows in set (0.00 sec)
-	```
+    ```
     
 3. 创建表并写入测试数据通过以下示例在RDS中创建person表：
     ```
