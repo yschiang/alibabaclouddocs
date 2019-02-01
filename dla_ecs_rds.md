@@ -29,16 +29,16 @@
     +--------------------+
 	4 rows in set (0.00 sec)
     ```
-2. 新增用户(例如，dla_user)，DLA之后将以该用户存取数据库。并将适当的存取权限以及DLA之IP地址段**100.104.0.0/16**加入数据库存取白名单列表：
+2. 新增用户(例如，dla_user)，DLA之后将以该用户存取数据库。并将适当的存取权限授與該用戶：
 
     ```
     MySQL [(none)]> USE mysql;
     Database changed
     
-    MySQL [mysql]> CREATE USER 'dla_user'@'100.104.0.0/255.255.0.0' IDENTIFIED BY 'dla_userpasswd';
+    MySQL [mysql]> CREATE USER 'dla_user'@'%' IDENTIFIED BY 'dla_userpasswd';
     Query OK, 0 rows affected (0.00 sec)
     
-    MySQL [mysql]> GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,ALTER,INDEX on dla_db.* TO 'dla_user'@'100.104.0.0/255.255.0.0';
+    MySQL [mysql]> GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,ALTER,INDEX on dla_db.* TO 'dla_user'@'%';
     Query OK, 0 rows affected (0.00 sec)
     
     MySQL [mysql]> flush privileges;
@@ -54,8 +54,9 @@
     +----------+-------------------------+
     3 rows in set (0.00 sec)
     ```
-    
-3. 创建表并写入测试数据通过以下示例在RDS中创建person表：
+    注意：若DLA与ECS实例为同一主帐户之前提下，可透过取代数据库存取白名单'%'为DLA之IP地址段'**100.104.0.0/255.255.0.0**'，管控到仅允许DLA连线存取。
+
+3. 创建表并写入测试数据通过以下示例在RDS中创建person表：    
     ```
     CREATE TABLE person (
       id int,
